@@ -1,6 +1,7 @@
 import numpy as np
 import numpy.random as npr
 import time
+import cpuinfo
 
 def progressBar(iterable, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
     """

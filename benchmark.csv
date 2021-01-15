@@ -1,7 +1,2 @@
 CPU Name, Type of Python, Average Time (s)
-Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz, Standard, 0.197
-Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz, Anaconda, 0.316
-ARMv7 Processor rev 3 (v7l), Standard, 7.973
-Intel(R) Core(TM) i5-7Y54 CPU @ 1.20GHz, Standard, 0.409
-AMD Ryzen 7 1700 Eight-Core Processor, Anaconda, 0.323
-iPad 2018, Juno Python, 5.085
+Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz, MSC v.1916 64 bit (AMD64), 0.321s
