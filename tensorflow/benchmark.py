@@ -1,12 +1,14 @@
 import tensorflow as tf
 from tensorflow.keras import datasets, layers, models
+import time
+import cpuinfo
+import platform
+import GPUtil
 
 (train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
 train_images, test_images = train_images / 255.0, test_images / 255.0
 
-# ONLY ON THE MAC
-# from tensorflow.python.compiler.mlcompute import mlcompute
-# mlcompute.set_mlc_device(device_name='gpu')
+start = time.time()
 
 model = models.Sequential()
 model.add(layers.Conv2D(128, (3, 3), activation='relu', input_shape=(32, 32, 3)))
@@ -23,9 +25,25 @@ model.compile(
     loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
     metrics=['accuracy']
 )
+
 history = model.fit(
     train_images, 
     train_labels, 
     epochs=10, 
     validation_data=(test_images, test_labels)
 )
+
+t = time.time()-start
+t = t/10
+
+print('ave. time for each epoch %.5f' % t)
+
+f=open('benchmark_tensorflow.csv','a')
+
+sysver = platform.python_compiler()
+gpus = GPUtil.getGPUs()
+gpu0 = gpus[0]
+perf = "%s, %s, %1.3fs\n" % (gpu0.name, sysver, t)
+print(perf)
+f.write(perf)
+f.close()
